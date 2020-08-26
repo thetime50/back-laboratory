@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  username <input type="text" id="user"><br>
+  password <input type="password" id="pass"><br>
+  <input type="button" value="login" id="login_btn">
+  <input type="button" value="register" id="reg_btn">
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+  $(function(){
+    $("#login_btn").click(function(){
+      if($("#user").val().length == 0){
+        return alert("Please input content");
+      }
+      if($("#pass").val().length == 0){
+        return alert("Please input password");
+      }
+      $.ajax({
+        url:"/user",
+        type:"GET",
+        data:{
+          act:"login",
+          user:$("#user").val(),
+          pass:$("#pass").val()
+        },
+        success:function(str){
+          var json = eval("("+str+")");
+          if(json.ok){
+            alert("登陆成功");
+          }else{
+            alert(json.msg);
+          }
+        },
+        error:function(err){
+          console.log(err);
+        }
+      });
+    });
+    $("#reg_btn").click(function(){
+      if($("#user").val().length == 0){
+        return alert("Please input content");
+      }
+      if($("#pass").val().length == 0){
+        return alert("Please input password");
+      }
+      $.ajax({
+        url:"/user",
+        type:"GET",
+        data:{
+          act:"reg",
+          user:$("#user").val(),
+          pass:$("#pass").val()
+        },
+        success:function(str){
+          var json = eval("("+str+")");
+          if(json.ok){
+            alert("注册成功");
+          }else{
+            alert(json.msg);
+          }
+        },
+        error:function(err){
+          console.log(err);
+        }
+      });
+    });
+  });
+</script>
+</html>
