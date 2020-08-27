@@ -22,9 +22,13 @@ storage:
     dbPath: c:\data\db
 ```
 ```cmd
+::安装 MongoDB服务
 cd "E:\Program Files\MongoDB\Server\4.4\bin\"
 mongod.exe --config "d:\mongodb\mongod.cfg" --install --serviceName "MongoDB"
 net start MongoDB
 net stop MongoDB
 mongod.exe --remove
+
+::MongoDB 后台管理 Shell
+mongo
 ```
