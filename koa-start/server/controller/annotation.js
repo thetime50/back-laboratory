@@ -61,7 +61,7 @@ const Create = async(ctx) => {
   let jwt = state.jwt
   // let data = body.data
   // console.log(JSON.stringify(ctx,null,'  '))
-  // console.log('*',JSON.stringify(jwt,null,'  '))
+  // console.log(JSON.stringify(jwt,null,'  '))
   // console.log(JSON.stringify(body,null,'  '))
   
   let annotation = new Annotation({
@@ -93,7 +93,7 @@ const Update = async(ctx) => {
   let jwt = state.jwt
   let data = body.data
   // console.log(JSON.stringify(ctx,null,'  '))
-  // console.log('*',JSON.stringify(jwt,null,'  '))
+  // console.log(JSON.stringify(jwt,null,'  '))
   // console.log(JSON.stringify(body,null,'  '))
   
   let doc = await findAnnotation({_id:data._id})
@@ -134,7 +134,7 @@ const Delete = async(ctx) => {
   let jwt = state.jwt
   let _id = body._id
   // console.log(JSON.stringify(ctx,null,'  '))
-  // console.log('*',JSON.stringify(jwt,null,'  '))
+  // console.log(JSON.stringify(jwt,null,'  '))
   // console.log(JSON.stringify(body,null,'  '))
   await delAnnotation(_id)
   ctx.status = 200;
