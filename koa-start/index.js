@@ -35,11 +35,13 @@ delUserRouter.post('/delUser', checkToken, UserController.DelUser);
 
 
 //装载上面四个子路由
-router.use('/api',loginRouter.routes(),loginRouter.allowedMethods());
-router.use('/api',registerRouter.routes(),registerRouter.allowedMethods());
-router.use('/api',userRouter.routes(),userRouter.allowedMethods());
-router.use('/api',delUserRouter.routes(),delUserRouter.allowedMethods());
-
+function routerUse(path,parent,children){
+    parent.use(path,children.routes(),children.allowedMethods());
+}
+routerUse('/api',router,loginRouter)
+routerUse('/api',router,registerRouter)
+routerUse('/api',router,userRouter)
+routerUse('/api',router,delUserRouter)
 
 
 
