@@ -20,9 +20,15 @@ const userSchema = mongoose.Schema({
     token: String,
     create_time: Date
 });
+const annotationSchema = mongoose.Schema({
+    uid: String,
+    annotation: Object,
+    create_time: Date
+});
 //根据schema生成model
 const model = {
-    User: mongoose.model('User', userSchema)
+    User: mongoose.model('User', userSchema),
+    Annotation: mongoose.model('Annotation', annotationSchema),
 };
 
 module.exports = model;
