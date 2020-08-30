@@ -23,27 +23,24 @@ const findAllAnnotation = () => {
       if (err) {
         reject(err);
       }
-
-      let rdoc = doc.map(async(v,i,a)=>{
-        let user = await UserController.dbFindUser({_id:v.uid})
-        console.log("*",JSON.stringify(user,null,'  '))
-        return {
-          ...v.toObject(),
-          username:user.username
-        }
-      })
-      Promise.all(rdoc)
-        .then((rdoc)=>{
-          console.log("**",JSON.stringify(rdoc,null,'  '))
-          resolve(rdoc)
-        }).catch(reject)
+      resolve(doc);
     });
   });
 };
-// const findAllAnnotationPro = async () => {
-//   let doc =findAllAnnotation
-//   return doc
-// };
+const findAllAnnotationPro = async () => {
+  let doc = await findAllAnnotation()
+
+  let rdoc = doc.map(async(v,i,a)=>{
+    let user = await UserController.dbFindUser({_id:v.uid})
+    console.log("*",JSON.stringify(user,null,'  '))
+    return {
+      ...v.toObject(),
+      username:user.username
+    }
+  })
+  rdoc = await Promise.all(rdoc)
+  return rdoc
+};
 
 
 //添加
@@ -107,7 +104,7 @@ const Update = async(ctx) => {
 };
 //查询
 const Retrive = async(ctx) => {
-  let doc = await findAllAnnotation();
+  let doc = await findAllAnnotationPro();
   console.log("annotation retrive ok")
   ctx.status = 200;
   ctx.body = {
