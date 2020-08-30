@@ -6,30 +6,32 @@ const objectIdToTimestamp = require('objectid-to-timestamp');
 //添加
 const Create = async(ctx) => {
   let body = ctx.request.body
-  let data = body.data
-  console.log(JSON.stringify(ctx,null,'  '))
+  let state = ctx.state
+  let jwt = state.jwt
+  // let data = body.data
+  // console.log(JSON.stringify(ctx,null,'  '))
+  // console.log('*',JSON.stringify(jwt,null,'  '))
   // console.log(JSON.stringify(body,null,'  '))
   
-  // let annotation = new Annotation({
-  //   uid:data.uid,
-  //   create_time : moment(objectIdToTimestamp(user._id)).format('YYYY-MM-DD HH:mm:ss'),
-  // });
-  // await new Promise((resolve, reject) => {
-  //   annotation.save((err) => {
-  //     if (err) {
-  //       reject(err);
-  //     }
+  let annotation = new Annotation({
+    uid:jwt.uid,
+    annotation:{},
+  });
+  annotation.create_time = moment(objectIdToTimestamp(annotation._id)).format('YYYY-MM-DD HH:mm:ss');
 
-  //     resolve();
-
-  //   });
-  // });
+  await new Promise((resolve, reject) => {
+    annotation.save((err) => {
+      if (err) {
+        reject(err);
+      }
+      resolve();
+    });
+  });
   console.log("annotation create ok")
   ctx.status = 200;
-  // console.log(JSON.stringify(user,null,'  '))
   ctx.body = {
     success: true,
-    // data:user,
+    data: annotation.get("annotation"),
   }
 }
 

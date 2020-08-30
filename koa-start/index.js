@@ -50,13 +50,13 @@ const annotationCreateRouter = new Router();
 annotationCreateRouter.post('/create', checkToken, AnnotationController.Create);
 //获取所有用户
 const annotationUpdateRouter = new Router();
-annotationUpdateRouter.post('/update', /* checkToken, */ AnnotationController.Update);
+annotationUpdateRouter.post('/update', checkToken, AnnotationController.Update);
 //获取所有用户
 const annotationRetriveRouter = new Router();
-annotationRetriveRouter.post('/retrive', /* checkToken, */ AnnotationController.Retrive);
+annotationRetriveRouter.post('/retrive', checkToken, AnnotationController.Retrive);
 //获取所有用户
 const annotationDeleteRouter = new Router();
-annotationDeleteRouter.post('/delete', /* checkToken, */ AnnotationController.Delete);
+annotationDeleteRouter.post('/delete', checkToken, AnnotationController.Delete);
 
 routerUse('/api/annotation',router,annotationCreateRouter)
 routerUse('/api/annotation',router,annotationUpdateRouter)
