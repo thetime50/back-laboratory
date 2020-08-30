@@ -41,8 +41,20 @@ const findAllAnnotationPro = async () => {
   rdoc = await Promise.all(rdoc)
   return rdoc
 };
+//删除某个用户
+const delAnnotation = function(id) {
+  return new Promise((resolve, reject) => {
+    Annotation.findOneAndRemove({ _id: id }, err => {
+      if (err) {
+        reject(err);
+      }
+      console.log('删除注释成功');
+      resolve();
+    });
+  });
+};
 
-
+/////////////////////////////////////////////////////////////////////////
 //添加
 const Create = async(ctx) => {
   let body = ctx.request.body
@@ -118,6 +130,14 @@ const Delete = async(ctx) => {
   //拿到要删除的用户id
   // let id = ctx.request.body.id;
   // await delUser(id);
+  let body = ctx.request.body
+  let state = ctx.state
+  let jwt = state.jwt
+  let _id = body._id
+  // console.log(JSON.stringify(ctx,null,'  '))
+  // console.log('*',JSON.stringify(jwt,null,'  '))
+  // console.log(JSON.stringify(body,null,'  '))
+  await delAnnotation(_id)
   ctx.status = 200;
   ctx.body = {
     success: '删除成功'
