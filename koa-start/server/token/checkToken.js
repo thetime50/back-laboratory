@@ -42,6 +42,7 @@ module.exports = async ( ctx, next ) => {
         ctx.throw(401, 'no token detected in http headerAuthorization');
     }
     const token = authorization.split(' ')[1];
+    // console.log("****",JSON.stringify( jwt.decode(token),null,'  '))
     let tokenContent;
     try {
         tokenContent = await jwt.verify(token, 'zhangzhongjie');     //如果token过期或验证失败，将抛出错误

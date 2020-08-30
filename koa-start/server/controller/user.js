@@ -60,7 +60,10 @@ const Login = async(ctx) => {
   } else if (doc.password === password) {
     console.log('密码一致!');
     //生成一个新的token,并存到数据库
-    let token = createToken(username);
+    let token = createToken({
+      username:doc.username,
+      uid:doc.get("id"),
+    });
     doc.token = token;
     await new Promise((resolve, reject) => {
       doc.save((err) => {
@@ -92,7 +95,6 @@ const Reg = async(ctx) => {
   let user = new User({
     username: ctx.request.body.name,
     password: sha1(ctx.request.body.pass), //加密
-    token: createToken(this.username) //创建token并存入数据库
   });
 
   //将objectid转换为用户创建时间(可以不用)
@@ -105,14 +107,29 @@ const Reg = async(ctx) => {
       success: false
     };
   } else {
+    
+    //并存到数据库
     await new Promise((resolve, reject) => {
-      user.save((err) => {
+      doc.save((err) => {
         if (err) {
           reject(err);
         }
-
         resolve();
+      });
+    });
 
+    //获取id 生成token 再存一次
+    let token = createToken({
+      username:doc.username,
+      uid:doc.get("id")
+    });
+    doc.token = token;
+    await new Promise((resolve, reject) => {
+      doc.save((err) => {
+        if (err) {
+          reject(err);
+        }
+        resolve();
       });
     });
     console.log('注册成功');
