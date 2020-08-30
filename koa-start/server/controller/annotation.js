@@ -15,7 +15,7 @@ const Create = async(ctx) => {
   
   let annotation = new Annotation({
     uid:jwt.uid,
-    annotation:{},
+    annotation:body.data || null,//annotation
   });
   annotation.create_time = moment(objectIdToTimestamp(annotation._id)).format('YYYY-MM-DD HH:mm:ss');
 
@@ -31,7 +31,7 @@ const Create = async(ctx) => {
   ctx.status = 200;
   ctx.body = {
     success: true,
-    data: annotation.get("annotation"),
+    data: annotation,
   }
 }
 
