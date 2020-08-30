@@ -32,7 +32,6 @@ const findAllAnnotationPro = async () => {
 
   let rdoc = doc.map(async(v,i,a)=>{
     let user = await UserController.dbFindUser({_id:v.uid})
-    console.log("*",JSON.stringify(user,null,'  '))
     return {
       ...v.toObject(),
       username:user.username
