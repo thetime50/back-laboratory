@@ -110,7 +110,7 @@ const Reg = async(ctx) => {
     
     //并存到数据库
     await new Promise((resolve, reject) => {
-      doc.save((err) => {
+      user.save((err) => {
         if (err) {
           reject(err);
         }
@@ -120,12 +120,12 @@ const Reg = async(ctx) => {
 
     //获取id 生成token 再存一次
     let token = createToken({
-      username:doc.username,
-      uid:doc.get("id")
+      username:user.username,
+      uid:user.get("id")
     });
-    doc.token = token;
+    user.token = token;
     await new Promise((resolve, reject) => {
-      doc.save((err) => {
+      user.save((err) => {
         if (err) {
           reject(err);
         }
