@@ -9,9 +9,9 @@ const createToken = require('../token/createToken.js');
 
 //数据库的操作
 //根据用户名查找用户
-const findUser = (username) => {
+const dbFindUser = (para) => {
   return new Promise((resolve, reject) => {
-    User.findOne({ username }, (err, doc) => {
+    User.findOne(para, (err, doc) => {
       if (err) {
         reject(err);
       }
@@ -49,7 +49,7 @@ const Login = async(ctx) => {
   let username = ctx.request.body.name;
   let password = sha1(ctx.request.body.pass);
 
-  let doc = await findUser(username);
+  let doc = await dbFindUser({username});
 
   if (!doc) {
     console.log('检查到用户名不存在');
@@ -99,7 +99,7 @@ const Reg = async(ctx) => {
 
   //将objectid转换为用户创建时间(可以不用)
   user.create_time = moment(objectIdToTimestamp(user._id)).format('YYYY-MM-DD HH:mm:ss');
-  let doc = await findUser(user.username);
+  let doc = await dbFindUser({username:user.username});
   if (doc) {
     console.log('用户名已经存在');
     ctx.status = 200;
@@ -162,6 +162,8 @@ const DelUser = async(ctx) => {
 };
 
 module.exports = {
+  dbFindUser,
+
   Login,
   Reg,
   GetAllUsers,
