@@ -68,7 +68,7 @@ routerUse('/api/annotation',router,annotationDeleteRouter)
 //加载路由中间件
 app.use(router.routes()).use(router.allowedMethods());
 
-app.listen(8888, () => {
-    console.log('The server is running at http://localhost:' + 8888);
+app.listen(58888, () => {
+    console.log('The server is running at http://localhost:' + 58888);
 });
 
