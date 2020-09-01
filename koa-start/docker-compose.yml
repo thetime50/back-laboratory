@@ -6,17 +6,8 @@ services:
     build: .
     ports:
       - "58888:58888"
-    networks:
-      - thetime-network
     depends_on:
       - mongodb
-
   mongodb:
     container_name: thetime-mongodb
     image: mongo
-    networks:
-      - thetime-network
-
-networks:
-  thetime-network:
-    driver: bridge

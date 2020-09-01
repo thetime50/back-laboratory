@@ -1,9 +1,9 @@
-# 和我们上篇没什么区别哈
-FROM node:14.9.0
+FROM node:10.5.0
 LABEL author="Lb 13508676924@163.com"
 ENV PORT=58888
 WORKDIR /app
-COPY . /app
+COPY ./package.json /app/package.json
 RUN npm install
+COPY . /app
 EXPOSE ${PORT}
-CMD npm start
+CMD npm run start
