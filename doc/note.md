@@ -34,3 +34,6 @@ source /etc/profile
 node -v
 ```
 
+
+[docker 部署node+mongodb](https://www.jianshu.com/p/36019a7a9290)
+

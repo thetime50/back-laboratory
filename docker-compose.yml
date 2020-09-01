@@ -1,0 +1,22 @@
+version: '1'
+
+services:
+  node:
+    name: thetime-node
+    build: .
+    ports:
+      - "58888:8888"
+    networks:
+      - thetime-network
+    depends_on:
+      - mongodb
+
+  mongodb:
+    name: thetime-mongodb
+    image: mongo
+    networks:
+      - thetime-network
+
+networks:
+  thetime-network:
+    driver: bridge
