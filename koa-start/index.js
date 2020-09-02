@@ -17,6 +17,17 @@ const UserController = require('./server/controller/user.js');
 //checkToken作为中间件存在
 const checkToken = require('./server/token/checkToken.js');
 
+
+
+app.use(async (ctx, next) => {
+    await next();
+    if(parseInt(ctx.status) === 404 ){
+        console.log('**404**',JSON.stringify(ctx,null,'  '))
+    }
+})
+
+
+
 //登录
 const loginRouter = new Router();
 loginRouter.post('/login', UserController.Login);
