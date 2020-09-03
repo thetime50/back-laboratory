@@ -7,6 +7,7 @@ services:
     ports:
       - "58888:58888"
     volumes:
+      - ./package.json:/app/package.json
       - .:/app
     stdin_open: true
     tty: true
