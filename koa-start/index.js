@@ -4,7 +4,26 @@ const app = new Koa();
 
 
 // // 跨域
-// app.use(cors());
+app.use(cors({
+    origin:(ctx)=>{
+        let host = ctx.request.host
+        let domains = [
+            /^localhost/,
+            /^thetime50\.com\b/,
+            /^www\.thetime50\.com\b/,
+        ]
+        let check = domains.findIndex((v,i,a)=>{
+            return v.test(host)
+        })
+        if(check>=0){
+            return '*'
+        }
+        return false
+    },
+    
+    credentials: true,
+    withCredentials:true,
+}));
 
 //router
 const Router = require('koa-router');
