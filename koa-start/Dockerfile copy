@@ -4,8 +4,11 @@ ENV PORT=58888
 WORKDIR /app
 EXPOSE ${PORT}
 
-COPY ./package.json /app/package.json
+# COPY ./package.json /app/package.json
+# RUN npm install
+# COPY . /app
+# EXPOSE ${PORT}
+# CMD npm run start
+
 RUN npm install
-COPY . /app
-EXPOSE ${PORT}
 CMD node index.js thetime-mongodb
