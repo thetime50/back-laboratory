@@ -6,4 +6,4 @@ COPY ./package.json /app/package.json
 RUN npm install
 COPY . /app
 EXPOSE ${PORT}
-CMD node index.js koa.thetime50.com
+CMD node index.js thetime-mongodb
