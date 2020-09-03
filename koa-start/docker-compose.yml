@@ -6,10 +6,6 @@ services:
     build: .
     ports:
       - "58888:58888"
-    volumes:
-      - .:/app
-    stdin_open: true
-    tty: true
     depends_on:
       - mongodb
   mongodb:
