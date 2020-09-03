@@ -40,3 +40,5 @@ node -v
 [下载docker-compose太慢解决方式](https://blog.csdn.net/baidu_21349635/article/details/104628772)  
 curl -L https://get.daocloud.io/docker/compose/releases/download/1.25.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose  
 sudo chmod +x /usr/local/bin/docker-compose
+
+telnet koa.thetime50.com 180

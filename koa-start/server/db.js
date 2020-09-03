@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 // mongoose.connect('mongodb://localhost/vue-login');
-const domain  = process.argv[2] //|| 'localhost'
+// const domain  = process.argv[2] //|| 'localhost'
+// const domain  = 'localhost'
+const domain  = 'thetime-mongodb'
 const dbUrl = `mongodb://${domain}/vue-login`
 try{
     console.log('connect db to ',dbUrl)
