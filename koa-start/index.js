@@ -1,5 +1,10 @@
 const Koa = require('koa');
+const cors = require('koa2-cors');
 const app = new Koa();
+
+
+// // 跨域
+// app.use(cors());
 
 //router
 const Router = require('koa-router');
@@ -21,8 +26,8 @@ const checkToken = require('./server/token/checkToken.js');
 
 app.use(async (ctx, next) => {
     await next();
-    if(parseInt(ctx.status) === 404 ){
-        console.log('**404**',JSON.stringify(ctx,null,'  '))
+    if (parseInt(ctx.status) === 404) {
+        console.log('**404**', JSON.stringify(ctx.originalUrl, null, '  '))
     }
 })
 
@@ -43,13 +48,13 @@ const delUserRouter = new Router();
 delUserRouter.post('/delUser', checkToken, UserController.DelUser);
 
 //装载上面四个子路由
-function routerUse(path,parent,children){
-    parent.use(path,children.routes(),children.allowedMethods());
+function routerUse(path, parent, children) {
+    parent.use(path, children.routes(), children.allowedMethods());
 }
-routerUse('/api',router,loginRouter)
-routerUse('/api',router,registerRouter)
-routerUse('/api',router,userRouter)
-routerUse('/api',router,delUserRouter)
+routerUse('/api', router, loginRouter)
+routerUse('/api', router, registerRouter)
+routerUse('/api', router, userRouter)
+routerUse('/api', router, delUserRouter)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -69,10 +74,10 @@ annotationRetriveRouter.post('/retrive', checkToken, AnnotationController.Retriv
 const annotationDeleteRouter = new Router();
 annotationDeleteRouter.post('/delete', checkToken, AnnotationController.Delete);
 
-routerUse('/api/annotation',router,annotationCreateRouter)
-routerUse('/api/annotation',router,annotationUpdateRouter)
-routerUse('/api/annotation',router,annotationRetriveRouter)
-routerUse('/api/annotation',router,annotationDeleteRouter)
+routerUse('/api/annotation', router, annotationCreateRouter)
+routerUse('/api/annotation', router, annotationUpdateRouter)
+routerUse('/api/annotation', router, annotationRetriveRouter)
+routerUse('/api/annotation', router, annotationDeleteRouter)
 
 
 

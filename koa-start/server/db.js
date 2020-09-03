@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 // mongoose.connect('mongodb://localhost/vue-login');
 try{
     mongoose.connect('mongodb://localhost/vue-login');
+    // mongoose.connect('mongodb://thetime-mongodb/vue-login');
 }catch(e){
     console.log('error and exit, open mongodb')
     process.exit()
