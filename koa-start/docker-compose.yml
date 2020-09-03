@@ -6,6 +6,8 @@ services:
     build: .
     ports:
       - "58888:58888"
+    volumes:
+      - .:/app
     depends_on:
       - mongodb
   mongodb:

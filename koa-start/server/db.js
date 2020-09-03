@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 // mongoose.connect('mongodb://localhost/vue-login');
+const domain  = process.argv[2] //|| 'localhost'
+const dbUrl = `mongodb://${domain}/vue-login`
 try{
-    mongoose.connect('mongodb://localhost/vue-login');
-    // mongoose.connect('mongodb://thetime-mongodb/vue-login');
+    console.log('connect db to ',dbUrl)
+    mongoose.connect(dbUrl);
 }catch(e){
     console.log('error and exit, open mongodb')
     process.exit()
