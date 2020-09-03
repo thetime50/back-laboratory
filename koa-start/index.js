@@ -1,7 +1,6 @@
 const Koa = require('koa');
 const cors = require('koa2-cors');
 const app = new Koa();
-let a =0
 
 // // 跨域
 app.use(cors({
@@ -29,7 +28,6 @@ app.use(cors({
 app.use(async (ctx, next) => {
     let old_throw = ctx.throw
     ctx.throw = (status, message, properties)=>{
-        console.log('throw',a+=1)
         let ppt = properties || {}
         if(! ppt.headers){
             ppt.headers = {}
