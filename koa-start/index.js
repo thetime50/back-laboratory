@@ -9,7 +9,7 @@ app.use(cors({
         let domains = [
             /^localhost/,
             /^thetime50\.com\b/,
-            /^.*\.thetime50\.com\b/,
+            /^\w*\.thetime50\.com\b/,
         ]
         let check = domains.findIndex((v,i,a)=>{
             return v.test(host)
