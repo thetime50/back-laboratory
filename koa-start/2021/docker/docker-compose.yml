@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  caddy:
+    container_name: caddy
+    image: caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /home/thetime/caddy/Caddyfile:/etc/caddy/Caddyfile # 配置文件
+      - /home/thetime/caddy/data:/data # 数据缓存
+      - /home/thetime/caddy/config:/config # 配置依赖文件目录
+      - /home/thetime/project:/project # 页面目录
+      - /home/thetime/project/index.html:/usr/share/caddy/index.html
+#   caddy_temp:
+#     container_name: caddy_temp
+#     image: ubuntu:15.10
+#     command: tail -F anything 
+#     volumes:
+#       - /home/thetime/caddy/Caddyfile:/etc/caddy/Caddyfile # 配置文件
+#       - /home/thetime/caddy/data:/data # 数据缓存
+#       - /home/thetime/caddy/config:/config # 配置依赖文件目录
+#       - /home/thetime/project:/project # 页面目录
+
+# volumes:
+#   caddy_data:
+#   caddy_config:
+    
+    # port: "${port}"
+    # $PWD

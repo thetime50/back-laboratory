@@ -1,0 +1,11 @@
+
+http://120.79.5.38, http://www.thetime50.com, http://thetime50.com {
+    root * /project
+    file_server
+    # gzip
+    # log /data/access.log
+}
+
+# http://koa.thetime50.com:58888{
+#     
+# }
