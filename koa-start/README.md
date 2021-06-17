@@ -1,3 +1,8 @@
+## 环境安装
+阿里云环境安装参考 https://github.com/thetime50/aliecs
+
+## login
+login参考代码  
 from https://github.com/stzhongjie/vue-login
 
 
